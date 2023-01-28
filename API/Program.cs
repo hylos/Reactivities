@@ -29,7 +29,7 @@ app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
-
+  
 //Run migrations automatically when the app starts.
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
