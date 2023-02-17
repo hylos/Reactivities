@@ -15,4 +15,9 @@ public class Activity
     public string Category { get; set; }
     public string City { get; set; }
     public string Venue { get; set; }
+
+    public bool IsCancelled { get; set; }
+
+    //we are initiaziling the list so that it does object referrence null when creating an activty. since Attendees will empty.
+    public ICollection<ActivityAttendee> Attendees { get; set;} = new List<ActivityAttendee>();
 }
