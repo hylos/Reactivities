@@ -18,6 +18,7 @@ public class DataContext : IdentityDbContext<AppUser>
     public DbSet<Activity> Activities { get; set; }
     public DbSet<ActivityAttendee> ActivityAttendees { get; set; }
     public DbSet<Photo> Photos { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -35,6 +36,12 @@ public class DataContext : IdentityDbContext<AppUser>
             .HasOne(u => u.Activity)
             .WithMany(a => a.Attendees)
             .HasForeignKey(aa => aa.ActivityId);
+
+        //create comments relationship, whe we delete an activity we will also delete the comments.
+        builder.Entity<Comment>()
+             .HasOne(a => a.Activity)
+             .WithMany(c => c.Comments)
+             .OnDelete(DeleteBehavior.Cascade);
     }
 
 }

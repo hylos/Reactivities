@@ -18,6 +18,15 @@ public class Activity
 
     public bool IsCancelled { get; set; }
 
-    //we are initiaziling the list so that it does object referrence null when creating an activty. since Attendees will empty.
+    /*
+     * when we create an activity in the app, the activity won't have ActivityAttendees as well as Comments. 
+     * so with that regard the API might throw an error to say Activity Attendees and Comments are null
+     * The work around that is initialize the list with new empty object so that we don't get null referrence error.
+     */
+
+    //we are initiaziling the list so that it does  send object referrence null when creating an activty. since Attendees will empty.
     public ICollection<ActivityAttendee> Attendees { get; set;} = new List<ActivityAttendee>();
+
+
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 }
