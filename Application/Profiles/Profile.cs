@@ -15,6 +15,11 @@ namespace Application.Profiles
 
         public string Image { get; set; }
 
+        //Following - when user is logged in we want to find out if they're currently following the other user when they're return their profile.
+        public bool Following { get; set; }
+        public int FollowersCount { get; set; }
+        public int FollowingCount { get; set; }
+
         public ICollection<Photo> Photos { get; set; }
     }
 }

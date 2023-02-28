@@ -17,6 +17,8 @@ namespace Infrastructure.Security
         {
             _httpContextAccessor = httpContextAccessor;
         }
+
+        //get currently logged in username
         public string GetUsername()
         {
             return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
