@@ -1,7 +1,7 @@
 import {  Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
 import { observer } from 'mobx-react-lite';
-import {Outlet, useLocation} from 'react-router-dom'
+import {Outlet, ScrollRestoration, useLocation} from 'react-router-dom'
 import HomePage from '../../features/activities/home/HomePage';
 import { ToastContainer } from 'react-toastify';
 import { useStore } from '../stores/store';
@@ -30,6 +30,7 @@ function App() {
     //when we load a route, outlet will swapped with the actually component.
     //<ToastContainer position='top-right' hideProgressBar theme='colored'/> Neil's line
     <>
+    <ScrollRestoration />
     <ModalContainer />
     <ToastContainer position='top-right' theme='colored'/>
     {location.pathname === '/' ? <HomePage /> : (
