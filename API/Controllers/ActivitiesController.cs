@@ -1,4 +1,5 @@
 ﻿using Application.Activities;
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +14,11 @@ namespace API.Controllers
     {
         //api/activities
         [HttpGet]
-        public  async Task<IActionResult> GetActivities()
+        public  async Task<IActionResult> GetActivities([FromQuery]ActivityParams param)
         {
+            //use param in the query string as params is a reserved word.
             //When returning IAction results , you don't have to specify the model type
-            return HandleResult(await Mediator.Send(new List.Query()));
+            return HandlePagedResult(await Mediator.Send(new List.Query { Params = param }));
         }
 
         //api/activities/id
