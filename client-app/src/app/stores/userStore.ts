@@ -4,15 +4,19 @@ import { User, UserFormValues } from "../models/user";
 import { router } from "../router/Routes";
 import { store } from "./store";
 
-export default class UserStore{
+export default class UserStore {
     user: User | null = null;
 
-    constructor(){
+    constructor() {
         makeAutoObservable(this)
     }
 
-    get isLoggedIn(){
+    get isLoggedIn() {
         return !!this.user;
+    }
+
+    setDisplayName = (name: string) => {
+        if (this.user) this.user.displayName = name
     }
 
     login = async (creds: UserFormValues) => {
@@ -45,7 +49,7 @@ export default class UserStore{
         router.navigate('/');
     }
 
-    getUser = async () =>{
+    getUser = async () => {
         try {
             const user = await agent.Account.current();
             runInAction(() => this.user = user);
@@ -55,7 +59,7 @@ export default class UserStore{
     }
 
     setImage = (image: string) => {
-        if(this.user)
-        this.user.image = image;
+        if (this.user)
+            this.user.image = image;
     }
 }
